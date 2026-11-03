@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npm install -D typescript
+          npm install -D typescript@5.6.3
           if [ ! -d node_modules/@capacitor/android ]; then
             CORE_VER=$(node -p "require('@capacitor/core/package.json').version" 2>/dev/null || echo latest)
             echo "Cài @capacitor/android phiên bản: $CORE_VER"
