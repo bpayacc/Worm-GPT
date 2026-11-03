@@ -1,5 +1,5 @@
 - name: Debug - liệt kê file
-        run: |
+        run:
           echo "=== Commit ==="
           git log -1 --oneline
           echo "=== Thư mục gốc ==="
