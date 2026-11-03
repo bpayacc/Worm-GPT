@@ -34,18 +34,14 @@ jobs:
           packages: ''
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Debug - liệt kê file
         run: |
-          echo "=== Commit ==="
-          git log -1 --oneline
-          echo "=== Thư mục gốc ==="
-          ls -la
-          echo "=== Tìm index.html và vite config ==="
-          find . -path ./node_modules -prune -o \( -iname "index.html" -o -iname "vite.config.*" \) -print
-          echo "=== Script build ==="
-          grep -n '"build"' package.json
+          npm install
+          npm install -D typescript
+          if [ ! -d node_modules/@capacitor/android ]; then
+            CORE_VER=$(node -p "require('@capacitor/core/package.json').version" 2>/dev/null || echo latest)
+            echo "Cài @capacitor/android phiên bản: $CORE_VER"
+            npm install @capacitor/android@$CORE_VER
+          fi
 
       - name: Build web application
         run: npm run build
